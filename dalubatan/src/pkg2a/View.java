@@ -41,7 +41,7 @@ public class View extends javax.swing.JFrame {
      public void Connect(){
        try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = (Connection)  DriverManager.getConnection("jdbc:mysql://localhost/pancho","root","");
+            con = (Connection)  DriverManager.getConnection("jdbc:mysql://localhost/dalubatan","root","");
         } catch (ClassNotFoundException | SQLException ex ) {
        
         }
@@ -49,7 +49,7 @@ public class View extends javax.swing.JFrame {
     }
       public void LoadName(){
          try {
-            pst = con.prepareStatement("SELECT id FROM student_table");//1
+            pst = con.prepareStatement("SELECT id FROM student_tbl");//1
             rs = pst.executeQuery();
             txtid.removeAll();
             StringBuilder ids = new StringBuilder();
@@ -65,7 +65,7 @@ public class View extends javax.swing.JFrame {
      private void Fetch(){
          try {
             int q;
-            pst = con.prepareStatement("SELECT * FROM student_table");
+            pst = con.prepareStatement("SELECT * FROM student_tbl");
             rs = pst.executeQuery();
             ResultSetMetaData rss = rs.getMetaData();
             q = rss.getColumnCount();
@@ -300,8 +300,8 @@ public class View extends javax.swing.JFrame {
             // ----------------------------------------
             // REMOVE ALSO FROM TXT FILE
             // ----------------------------------------
-            File file = new File("C:/2A/student_table.txt");
-            File temp = new File("C:/2A/temp.txt");
+            File file = new File("C:/dalubatan/student_tbl.txt");
+            File temp = new File("C:/dalubatan/temp.txt");
 
             BufferedReader br = new BufferedReader(new FileReader(file));
             BufferedWriter bw = new BufferedWriter(new FileWriter(temp));
@@ -460,7 +460,7 @@ public class View extends javax.swing.JFrame {
         try {
         int id = Integer.parseInt(txtsearch.getText().trim());
 
-        pst = con.prepareStatement("SELECT * FROM student_table WHERE id = ?");
+        pst = con.prepareStatement("SELECT * FROM student_tbl WHERE id = ?");
         pst.setInt(1, id);
         rs = pst.executeQuery();
 
